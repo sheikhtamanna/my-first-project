@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}all products
+{% endblock %}
+
+{% block content %}
+	<div class="row mt-5">
+
+		<div class="col-md-2 justify-content-center pt-4">
+			<ul class="list-group">
+				<a class="text-decoration-none" href="{{ path('app_products') }}">
+					<li class="list-group-item btn btn-primary text-center">All</li>
+				</a>
+				{% for catagory in catagories %}
+					<a class="text-decoration-none" href="{{ path('app_products_catagory', {slug: catagory.slug }) }}">
+						<li class="list-group-item btn btn-primary text-center">{{ catagory.name}}</li>
+					</a>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<div class="col-md-10 justify-content-center text-center">
+			<h4>liste des produits
+			</h4>
+			{% if products is not empty  %}
+
+				{% for product in products %}
+
+					<div class="row justify-content-center">
+						<div class="col card mb-3 " style="max-width: 800px;">
+							<div class="row g-0">
+								<div class="col-md-6 text-center">
+									<img class="w-100" src="{{ asset('photos/product/' ~ product.photo) }}" class="img-fluid rounded-start" alt="{{ product.title }}">
+								</div>
+								<div class="col-md-6">
+									<div class="card-body text-center">
+										<h4 class="card-title">
+											<a href="{{ path('app_product_show', {id: product.id}) }}">
+												{{ product.title}}
+											</a>
+										</h4>
+										<h6>categorie :
+											{{ product.catagory.name}}
+										</h6>
+										<h5>couleur :
+											{{ product.color }}</h5>
+										<h5>taille :
+											{{ product.size}}</h5>
+										<h5>il en reste
+											{{ product.stock}}</h5>
+										<h5>prix :
+											<strong>{{ product.price }}€</strong>
+										</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				<div class=" alert alert-danger mt-5">
+					<p>aucun produit dans cette categorie pour le moment ! revenez plus tard</p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html.twig" %}
+{% block title %}
+	product details
+	{{product.title }}
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-8 col-lg-8 col-sm-12">
+			<h1>
+				Product details n°
+				{{ product.id }}</h1>
+			<h5>
+				<strong>title :
+				</strong>
+				{{ product.title }}</h5>
+			<h5>
+				<strong>color :
+				</strong>
+				{{ product.color }}</h5>
+			<h5>
+				<strong>size :
+				</strong>
+				{{ product.size }}</h5>
+			<h5>
+				<strong>price :
+				</strong>
+				{{ product.price }}</h5>
+			<h5>
+				<strong>stock :
+				</strong>
+				{{ product.stock }}</h5>
+			<p>
+				<strong>description :
+				</strong>
+				{{ product.description }}</p>
+		</div>
+		<div class="col-md-4 col-lg-4 col-sm-12">
+			<img class="img-fluid" src="{{ asset('photos/product/' ~ product.photo) }}" alt="{{ product.title }}">
+		</div>
+	</div>
+{% endblock %}
